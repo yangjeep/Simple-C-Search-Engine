@@ -2,7 +2,8 @@
 #define INDEXER_MAIN_H
 
 #include "document.h"
-#include "indexer.h"
+#include "index.h"
+
 
 // Process a document and add its terms to the index
 int process_document(Indexer* indexer, Document* doc);

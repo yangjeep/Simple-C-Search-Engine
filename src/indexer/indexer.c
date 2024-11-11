@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "indexer_main.h"
+#include "indexer.h"
 
 int process_document(Indexer* indexer, Document* doc) {
     if (!indexer || !doc) return -1;

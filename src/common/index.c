@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
-#include "indexer.h"
+#include "index.h"
 
 #define INITIAL_CAPACITY 100
 

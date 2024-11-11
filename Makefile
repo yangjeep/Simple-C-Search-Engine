@@ -185,6 +185,32 @@ common/fast:
 .PHONY : common/fast
 
 #=============================================================================
+# Target rules for targets named indexer
+
+# Build rule for target.
+indexer: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 indexer
+.PHONY : indexer
+
+# fast build rule for target.
+indexer/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/indexer.dir/build.make CMakeFiles/indexer.dir/build
+.PHONY : indexer/fast
+
+#=============================================================================
+# Target rules for targets named server
+
+# Build rule for target.
+server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 server
+.PHONY : server
+
+# fast build rule for target.
+server/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
+.PHONY : server/fast
+
+#=============================================================================
 # Target rules for targets named test_document
 
 # Build rule for target.
@@ -198,17 +224,17 @@ test_document/fast:
 .PHONY : test_document/fast
 
 #=============================================================================
-# Target rules for targets named test_indexer
+# Target rules for targets named test_index
 
 # Build rule for target.
-test_indexer: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_indexer
-.PHONY : test_indexer
+test_index: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_index
+.PHONY : test_index
 
 # fast build rule for target.
-test_indexer/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_indexer.dir/build.make CMakeFiles/test_indexer.dir/build
-.PHONY : test_indexer/fast
+test_index/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_index.dir/build.make CMakeFiles/test_index.dir/build
+.PHONY : test_index/fast
 
 #=============================================================================
 # Target rules for targets named test_server
@@ -233,7 +259,7 @@ unity: cmake_check_build_system
 
 # fast build rule for target.
 unity/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/unity-build/CMakeFiles/unity.dir/build.make _deps/unity-build/CMakeFiles/unity.dir/build
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/_deps/unity-build/CMakeFiles/unity.dir/build.make CMakeFiles/_deps/unity-build/CMakeFiles/unity.dir/build
 .PHONY : unity/fast
 
 src/common/document.o: src/common/document.c.o
@@ -260,29 +286,77 @@ src/common/document.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/document.c.s
 .PHONY : src/common/document.c.s
 
-src/common/indexer.o: src/common/indexer.c.o
-.PHONY : src/common/indexer.o
+src/common/index.o: src/common/index.c.o
+.PHONY : src/common/index.o
 
 # target to build an object file
-src/common/indexer.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/indexer.c.o
-.PHONY : src/common/indexer.c.o
+src/common/index.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/index.c.o
+.PHONY : src/common/index.c.o
 
-src/common/indexer.i: src/common/indexer.c.i
-.PHONY : src/common/indexer.i
+src/common/index.i: src/common/index.c.i
+.PHONY : src/common/index.i
 
 # target to preprocess a source file
-src/common/indexer.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/indexer.c.i
-.PHONY : src/common/indexer.c.i
+src/common/index.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/index.c.i
+.PHONY : src/common/index.c.i
 
-src/common/indexer.s: src/common/indexer.c.s
-.PHONY : src/common/indexer.s
+src/common/index.s: src/common/index.c.s
+.PHONY : src/common/index.s
 
 # target to generate assembly for a file
-src/common/indexer.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/indexer.c.s
-.PHONY : src/common/indexer.c.s
+src/common/index.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/index.c.s
+.PHONY : src/common/index.c.s
+
+src/indexer/indexer.o: src/indexer/indexer.c.o
+.PHONY : src/indexer/indexer.o
+
+# target to build an object file
+src/indexer/indexer.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/indexer.dir/build.make CMakeFiles/indexer.dir/src/indexer/indexer.c.o
+.PHONY : src/indexer/indexer.c.o
+
+src/indexer/indexer.i: src/indexer/indexer.c.i
+.PHONY : src/indexer/indexer.i
+
+# target to preprocess a source file
+src/indexer/indexer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/indexer.dir/build.make CMakeFiles/indexer.dir/src/indexer/indexer.c.i
+.PHONY : src/indexer/indexer.c.i
+
+src/indexer/indexer.s: src/indexer/indexer.c.s
+.PHONY : src/indexer/indexer.s
+
+# target to generate assembly for a file
+src/indexer/indexer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/indexer.dir/build.make CMakeFiles/indexer.dir/src/indexer/indexer.c.s
+.PHONY : src/indexer/indexer.c.s
+
+src/server/server.o: src/server/server.c.o
+.PHONY : src/server/server.o
+
+# target to build an object file
+src/server/server.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/server.c.o
+.PHONY : src/server/server.c.o
+
+src/server/server.i: src/server/server.c.i
+.PHONY : src/server/server.i
+
+# target to preprocess a source file
+src/server/server.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/server.c.i
+.PHONY : src/server/server.c.i
+
+src/server/server.s: src/server/server.c.s
+.PHONY : src/server/server.s
+
+# target to generate assembly for a file
+src/server/server.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/server.c.s
+.PHONY : src/server/server.c.s
 
 test/test_document.o: test/test_document.c.o
 .PHONY : test/test_document.o
@@ -308,29 +382,29 @@ test/test_document.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_document.dir/build.make CMakeFiles/test_document.dir/test/test_document.c.s
 .PHONY : test/test_document.c.s
 
-test/test_indexer.o: test/test_indexer.c.o
-.PHONY : test/test_indexer.o
+test/test_index.o: test/test_index.c.o
+.PHONY : test/test_index.o
 
 # target to build an object file
-test/test_indexer.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_indexer.dir/build.make CMakeFiles/test_indexer.dir/test/test_indexer.c.o
-.PHONY : test/test_indexer.c.o
+test/test_index.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_index.dir/build.make CMakeFiles/test_index.dir/test/test_index.c.o
+.PHONY : test/test_index.c.o
 
-test/test_indexer.i: test/test_indexer.c.i
-.PHONY : test/test_indexer.i
+test/test_index.i: test/test_index.c.i
+.PHONY : test/test_index.i
 
 # target to preprocess a source file
-test/test_indexer.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_indexer.dir/build.make CMakeFiles/test_indexer.dir/test/test_indexer.c.i
-.PHONY : test/test_indexer.c.i
+test/test_index.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_index.dir/build.make CMakeFiles/test_index.dir/test/test_index.c.i
+.PHONY : test/test_index.c.i
 
-test/test_indexer.s: test/test_indexer.c.s
-.PHONY : test/test_indexer.s
+test/test_index.s: test/test_index.c.s
+.PHONY : test/test_index.s
 
 # target to generate assembly for a file
-test/test_indexer.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_indexer.dir/build.make CMakeFiles/test_indexer.dir/test/test_indexer.c.s
-.PHONY : test/test_indexer.c.s
+test/test_index.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_index.dir/build.make CMakeFiles/test_index.dir/test/test_index.c.s
+.PHONY : test/test_index.c.s
 
 test/test_server.o: test/test_server.c.o
 .PHONY : test/test_server.o
@@ -370,22 +444,30 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... common"
+	@echo "... indexer"
+	@echo "... server"
 	@echo "... test_document"
-	@echo "... test_indexer"
+	@echo "... test_index"
 	@echo "... test_server"
 	@echo "... unity"
 	@echo "... src/common/document.o"
 	@echo "... src/common/document.i"
 	@echo "... src/common/document.s"
-	@echo "... src/common/indexer.o"
-	@echo "... src/common/indexer.i"
-	@echo "... src/common/indexer.s"
+	@echo "... src/common/index.o"
+	@echo "... src/common/index.i"
+	@echo "... src/common/index.s"
+	@echo "... src/indexer/indexer.o"
+	@echo "... src/indexer/indexer.i"
+	@echo "... src/indexer/indexer.s"
+	@echo "... src/server/server.o"
+	@echo "... src/server/server.i"
+	@echo "... src/server/server.s"
 	@echo "... test/test_document.o"
 	@echo "... test/test_document.i"
 	@echo "... test/test_document.s"
-	@echo "... test/test_indexer.o"
-	@echo "... test/test_indexer.i"
-	@echo "... test/test_indexer.s"
+	@echo "... test/test_index.o"
+	@echo "... test/test_index.i"
+	@echo "... test/test_index.s"
 	@echo "... test/test_server.o"
 	@echo "... test/test_server.i"
 	@echo "... test/test_server.s"

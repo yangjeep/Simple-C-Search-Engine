@@ -1,8 +1,8 @@
 #ifndef SERVER_H
 #define SERVER_H
 
-#include "document.h"
-#include "indexer.h"
+#include "common/document.h"
+#include "common/index.h"
 
 #define MAX_QUERY_LEN 1024
 #define DEFAULT_PORT 8080

@@ -1,5 +1,5 @@
 #include "unity.h"
-#include "indexer.h"
+#include "index.h"
 #include <string.h>
 
 static Indexer* indexer;
@@ -71,8 +71,6 @@ void test_indexer_find_term_should_find_existing_term(void) {
     TEST_ASSERT_EQUAL_STRING("doc1", results[0]->doc_id);
     TEST_ASSERT_EQUAL_STRING("doc2", results[1]->doc_id);
     
-    // Cleanup
-    free(results);
 }
 
 void test_indexer_find_term_should_handle_nonexistent_term(void) {
@@ -88,3 +86,11 @@ void test_indexer_find_term_should_handle_nonexistent_term(void) {
     TEST_ASSERT_NULL(results);
     TEST_ASSERT_EQUAL_INT(0, count);
 } 
+
+int main(void) {
+    UNITY_BEGIN();
+    RUN_TEST(test_indexer_add_term_should_handle_multiple_documents);
+    RUN_TEST(test_indexer_find_term_should_find_existing_term);
+    RUN_TEST(test_indexer_find_term_should_handle_nonexistent_term);
+    return UNITY_END();
+}
