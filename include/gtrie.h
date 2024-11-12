@@ -3,7 +3,7 @@
 
 #include <stddef.h>
 #include <stdbool.h>
-#include <lmdb.h>
+#include <errno.h>
 
 #define TRIE_CHILDREN_SIZE 128  // ASCII characters support
 #define MAX_WORD_LENGTH 256
@@ -29,23 +29,14 @@ typedef struct TrieNode {
 typedef struct {
     TrieNode* root;
     size_t total_words;
-    MDB_env* env;
-    MDB_dbi dbi;
 } GTrie;
 
 // GTrie operations
-GTrie* gtrie_create(void);
-void gtrie_destroy(GTrie* trie);
-void gtrie_insert(GTrie* trie, const char* word, const char* doc_id);
-PostingList* gtrie_search(const GTrie* trie, const char* word);
-char** gtrie_prefix_search(const GTrie* trie, const char* prefix, size_t* count);
+GTrie* gtrie_create(int* err);
+int gtrie_destroy(GTrie* trie);
+int gtrie_insert(GTrie* trie, const char* word, const char* doc_id);
+PostingList* gtrie_search(const GTrie* trie, const char* word, int* err);
+char** gtrie_prefix_search(const GTrie* trie, const char* prefix, size_t* count, int* err);
 
-// LMDB-related operations
-int gtrie_init_db(gtrie_t *trie, const char *path, size_t db_size); 
-bool gtrie_close_db(GTrie* trie);
-bool gtrie_write_to_db(GTrie* trie, const char* word, PostingList* postings);
-PostingList* gtrie_read_from_db(const GTrie* trie, const char* word);
-bool gtrie_sync_to_db(GTrie* trie);
-bool gtrie_load_from_db(GTrie* trie);
 
 #endif 

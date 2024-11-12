@@ -234,6 +234,30 @@ src/common/gtrie.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/gtrie.c.s
 .PHONY : src/common/gtrie.c.s
 
+src/common/gtrie_io.o: src/common/gtrie_io.c.o
+.PHONY : src/common/gtrie_io.o
+
+# target to build an object file
+src/common/gtrie_io.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/gtrie_io.c.o
+.PHONY : src/common/gtrie_io.c.o
+
+src/common/gtrie_io.i: src/common/gtrie_io.c.i
+.PHONY : src/common/gtrie_io.i
+
+# target to preprocess a source file
+src/common/gtrie_io.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/gtrie_io.c.i
+.PHONY : src/common/gtrie_io.c.i
+
+src/common/gtrie_io.s: src/common/gtrie_io.c.s
+.PHONY : src/common/gtrie_io.s
+
+# target to generate assembly for a file
+src/common/gtrie_io.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/gtrie_io.c.s
+.PHONY : src/common/gtrie_io.c.s
+
 test/test_gtrie.o: test/test_gtrie.c.o
 .PHONY : test/test_gtrie.o
 
@@ -277,6 +301,9 @@ help:
 	@echo "... src/common/gtrie.o"
 	@echo "... src/common/gtrie.i"
 	@echo "... src/common/gtrie.s"
+	@echo "... src/common/gtrie_io.o"
+	@echo "... src/common/gtrie_io.i"
+	@echo "... src/common/gtrie_io.s"
 	@echo "... test/test_gtrie.o"
 	@echo "... test/test_gtrie.i"
 	@echo "... test/test_gtrie.s"

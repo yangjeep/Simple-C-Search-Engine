@@ -18,6 +18,7 @@ FetchContent_MakeAvailable(unity)
 # Project structure
 set(COMMON_SOURCES
     src/common/gtrie.c
+    src/common/gtrie_io.c
 )
 
 # Create common library
