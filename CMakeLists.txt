@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 project(SearchEngine C)
 
-set(CMAKE_OSX_ARCHITECTURES "arm64")
 
 # Find LMDB package
 find_package(PkgConfig REQUIRED)
