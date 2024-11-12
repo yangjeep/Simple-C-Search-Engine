@@ -41,7 +41,7 @@ PostingList* gtrie_search(const GTrie* trie, const char* word);
 char** gtrie_prefix_search(const GTrie* trie, const char* prefix, size_t* count);
 
 // LMDB-related operations
-bool gtrie_init_db(GTrie* trie, const char* db_path);
+int gtrie_init_db(gtrie_t *trie, const char *path, size_t db_size); 
 bool gtrie_close_db(GTrie* trie);
 bool gtrie_write_to_db(GTrie* trie, const char* word, PostingList* postings);
 PostingList* gtrie_read_from_db(const GTrie* trie, const char* word);

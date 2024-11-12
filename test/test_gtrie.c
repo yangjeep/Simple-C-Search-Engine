@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 #define TEST_DB_PATH "./testdb"
+#define TEST_DB_SIZE (1024 * 1024 * 1024)  // 1GB default test size
 
 void setUp(void) {
     // Called before each test
@@ -56,8 +57,8 @@ void test_insert_search(void) {
 void test_database_operations(void) {
     GTrie* trie = gtrie_create();
     
-    // Test DB initialization
-    TEST_ASSERT_TRUE(gtrie_init_db(trie, TEST_DB_PATH));
+    // Updated DB initialization with size parameter
+    TEST_ASSERT_EQUAL_INT(0, gtrie_init_db(trie, TEST_DB_PATH, TEST_DB_SIZE));
     
     // Test writing to DB
     gtrie_insert(trie, "database", "doc1");
@@ -103,7 +104,8 @@ void test_edge_cases(void) {
 // Test concurrent operations
 void test_concurrent_operations(void) {
     GTrie* trie = gtrie_create();
-    TEST_ASSERT_TRUE(gtrie_init_db(trie, TEST_DB_PATH));
+    // Updated DB initialization with size parameter
+    TEST_ASSERT_EQUAL_INT(0, gtrie_init_db(trie, TEST_DB_PATH, TEST_DB_SIZE));
     
     const char* words[] = {"concurrent", "test", "multiple", "words"};
     const char* docs[] = {"doc1", "doc2", "doc3", "doc4"};
