@@ -3,8 +3,49 @@
 #include <string.h>
 #include <stdio.h>
 #include <errno.h>
+#include <stdint.h>
 
 #define GTRIE_DB_SIZE 1024 * 1024 * 10  // 10MB max database size
+#define UTF8_MAX_BYTES 4
+#define UNICODE_MAX 0x10FFFF
+
+static int utf8_byte_count(uint8_t first_byte) {
+    if ((first_byte & 0x80) == 0) return 1;
+    if ((first_byte & 0xE0) == 0xC0) return 2;
+    if ((first_byte & 0xF0) == 0xE0) return 3;
+    if ((first_byte & 0xF8) == 0xF0) return 4;
+    return -1;  // Invalid UTF-8 leading byte
+}
+
+static uint32_t utf8_to_codepoint(const char* utf8_char, int* bytes_read) {
+    const uint8_t* bytes = (const uint8_t*)utf8_char;
+    int len = utf8_byte_count(bytes[0]);
+    uint32_t codepoint = 0;
+    
+    if (len < 0) {
+        *bytes_read = 1;  // Skip invalid byte
+        return UINT32_MAX;
+    }
+    
+    switch (len) {
+        case 1:
+            codepoint = bytes[0];
+            break;
+        case 2:
+            codepoint = ((bytes[0] & 0x1F) << 6) | (bytes[1] & 0x3F);
+            break;
+        case 3:
+            codepoint = ((bytes[0] & 0x0F) << 12) | ((bytes[1] & 0x3F) << 6) | (bytes[2] & 0x3F);
+            break;
+        case 4:
+            codepoint = ((bytes[0] & 0x07) << 18) | ((bytes[1] & 0x3F) << 12) |
+                       ((bytes[2] & 0x3F) << 6) | (bytes[3] & 0x3F);
+            break;
+    }
+    
+    *bytes_read = len;
+    return codepoint;
+}
 
 static TrieNode* create_node(int* err) {
     TrieNode* node = calloc(1, sizeof(TrieNode));
@@ -76,7 +117,6 @@ int gtrie_destroy(GTrie* trie) {
 }
 
 
-
 int gtrie_insert(GTrie* trie, const char* word, const char* doc_id) {
     if (!trie || !word || !doc_id) return EINVAL;
     
@@ -84,8 +124,16 @@ int gtrie_insert(GTrie* trie, const char* word, const char* doc_id) {
     int err = 0;
     
     while (*word) {
-        int index = *word - 'a';
-        if (index < 0 || index >= ALPHABET_SIZE) return EINVAL;
+        int bytes_read;
+        uint32_t codepoint = utf8_to_codepoint(word, &bytes_read);
+        
+        if (codepoint == UINT32_MAX || codepoint > UNICODE_MAX) {
+            return EINVAL;  // Invalid UTF-8 sequence
+        }
+        
+        // Use the codepoint as the index, you might want to add a mapping function
+        // if you want to optimize the memory usage
+        int index = codepoint % ALPHABET_SIZE;  // Simple mapping, you might want to improve this
         
         if (!current->children[index]) {
             current->children[index] = create_node(&err);
@@ -93,7 +141,7 @@ int gtrie_insert(GTrie* trie, const char* word, const char* doc_id) {
         }
         
         current = current->children[index];
-        word++;
+        word += bytes_read;  // Advance by the number of bytes read
     }
     
     // Create or update posting list
@@ -129,17 +177,26 @@ PostingList* gtrie_search(const GTrie* trie, const char* word, int* err) {
         return NULL;
     }
     
-
     const TrieNode* current = trie->root;
     
     while (*word) {
-        int index = *word - 'a';
-        if (index < 0 || index >= ALPHABET_SIZE || !current->children[index]) {
+        int bytes_read;
+        uint32_t codepoint = utf8_to_codepoint(word, &bytes_read);
+        
+        if (codepoint == UINT32_MAX || codepoint > UNICODE_MAX) {
+            if (err) *err = EINVAL;
+            return NULL;
+        }
+        
+        int index = codepoint % ALPHABET_SIZE;
+        
+        if (!current->children[index]) {
             if (err) *err = ENOENT;
             return NULL;
         }
+        
         current = current->children[index];
-        word++;
+        word += bytes_read;
     }
     
     return current->postings;

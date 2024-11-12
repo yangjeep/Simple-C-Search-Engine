@@ -240,6 +240,53 @@ void test_product_keywords(void) {
     TEST_ASSERT_EQUAL_INT(0, rc);
 }
 
+void test_utf8_support(void) {
+    int err = 0;
+    GTrie* trie = gtrie_create(&err);
+    TEST_ASSERT_EQUAL_INT(0, err);
+    TEST_ASSERT_NOT_NULL(trie);
+
+    // Test various UTF-8 characters
+    const char* keywords[][2] = {
+        {"café", "doc1"},           // 2-byte UTF-8
+        {"sushi🍣", "doc2"},        // 4-byte UTF-8 emoji
+        {"über", "doc3"},           // 2-byte UTF-8
+        {"中文", "doc4"},           // 3-byte UTF-8
+        {"привет", "doc5"}          // 2-byte UTF-8
+    };
+    const int num_entries = sizeof(keywords) / sizeof(keywords[0]);
+
+    // Insert all UTF-8 keywords
+    for (int i = 0; i < num_entries; i++) {
+        int rc = gtrie_insert(trie, keywords[i][0], keywords[i][1]);
+        TEST_ASSERT_EQUAL_INT(0, rc);
+    }
+
+    // Test searching for UTF-8 keywords
+    PostingList* cafe_results = gtrie_search(trie, "café", &err);
+    TEST_ASSERT_EQUAL_INT(0, err);
+    TEST_ASSERT_NOT_NULL(cafe_results);
+    TEST_ASSERT_EQUAL_STRING("doc1", cafe_results->head->doc_id);
+
+    // Test searching for emoji
+    PostingList* sushi_results = gtrie_search(trie, "sushi🍣", &err);
+    TEST_ASSERT_EQUAL_INT(0, err);
+    TEST_ASSERT_NOT_NULL(sushi_results);
+    TEST_ASSERT_EQUAL_STRING("doc2", sushi_results->head->doc_id);
+
+    // Test searching for Chinese characters
+    PostingList* chinese_results = gtrie_search(trie, "中文", &err);
+    TEST_ASSERT_EQUAL_INT(0, err);
+    TEST_ASSERT_NOT_NULL(chinese_results);
+    TEST_ASSERT_EQUAL_STRING("doc4", chinese_results->head->doc_id);
+
+    // Test invalid UTF-8 sequence
+    int rc = gtrie_insert(trie, "\xFF\xFF", "invalid");  // Invalid UTF-8
+    TEST_ASSERT_EQUAL_INT(EINVAL, rc);
+
+    rc = gtrie_destroy(trie);
+    TEST_ASSERT_EQUAL_INT(0, rc);
+}
 
 int main(void) {
     UNITY_BEGIN();
@@ -250,5 +297,7 @@ int main(void) {
     RUN_TEST(test_large_scale);
     RUN_TEST(test_node_count);
     RUN_TEST(test_product_keywords);
+    RUN_TEST(test_utf8_support);
+    
     return UNITY_END();
 } 

@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include <errno.h>
 
-#define TRIE_CHILDREN_SIZE 128  // ASCII characters support
+#define TRIE_CHILDREN_SIZE 256  // Keep 256 since we'll index by bytes
 #define MAX_WORD_LENGTH 256
 #define ALPHABET_SIZE 26  
 
@@ -23,7 +23,7 @@ typedef struct TrieNode {
     struct TrieNode* children[TRIE_CHILDREN_SIZE];
     PostingList* postings;
     bool is_end;
-    char* word;
+    char* word;  // UTF-8 encoded string
 } TrieNode;
 
 typedef struct {
