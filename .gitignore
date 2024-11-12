@@ -67,3 +67,5 @@ Makefile
 *.cmake
 build/
 _deps/
+testdb/
+test_gtrie
