@@ -19,6 +19,15 @@ typedef struct {
     uint64_t node_count;     // Number of nodes in trie
 } IndexInfo;
 
+// File format header
+typedef struct {
+    uint32_t magic;          // Magic number for validation
+    uint32_t version;        // Format version
+    uint64_t timestamp;      // Creation timestamp
+    uint64_t node_count;     // Total nodes
+    uint64_t doc_count;      // Total unique documents
+} IndexHeader;
+
 // Core operations
 int gtrie_save(const GTrie* trie, const char* filepath, progress_cb progress, void* user_data);
 GTrie* gtrie_load(const char* filepath, int* err, progress_cb progress, void* user_data);

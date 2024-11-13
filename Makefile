@@ -198,6 +198,19 @@ test_gtrie/fast:
 .PHONY : test_gtrie/fast
 
 #=============================================================================
+# Target rules for targets named test_gtrie_io
+
+# Build rule for target.
+test_gtrie_io: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_gtrie_io
+.PHONY : test_gtrie_io
+
+# fast build rule for target.
+test_gtrie_io/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_gtrie_io.dir/build.make CMakeFiles/test_gtrie_io.dir/build
+.PHONY : test_gtrie_io/fast
+
+#=============================================================================
 # Target rules for targets named unity
 
 # Build rule for target.
@@ -258,6 +271,30 @@ src/common/gtrie_io.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/gtrie_io.c.s
 .PHONY : src/common/gtrie_io.c.s
 
+src/common/logging.o: src/common/logging.c.o
+.PHONY : src/common/logging.o
+
+# target to build an object file
+src/common/logging.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/logging.c.o
+.PHONY : src/common/logging.c.o
+
+src/common/logging.i: src/common/logging.c.i
+.PHONY : src/common/logging.i
+
+# target to preprocess a source file
+src/common/logging.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/logging.c.i
+.PHONY : src/common/logging.c.i
+
+src/common/logging.s: src/common/logging.c.s
+.PHONY : src/common/logging.s
+
+# target to generate assembly for a file
+src/common/logging.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/logging.c.s
+.PHONY : src/common/logging.c.s
+
 test/test_gtrie.o: test/test_gtrie.c.o
 .PHONY : test/test_gtrie.o
 
@@ -282,6 +319,30 @@ test/test_gtrie.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_gtrie.dir/build.make CMakeFiles/test_gtrie.dir/test/test_gtrie.c.s
 .PHONY : test/test_gtrie.c.s
 
+test/test_gtrie_io.o: test/test_gtrie_io.c.o
+.PHONY : test/test_gtrie_io.o
+
+# target to build an object file
+test/test_gtrie_io.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_gtrie_io.dir/build.make CMakeFiles/test_gtrie_io.dir/test/test_gtrie_io.c.o
+.PHONY : test/test_gtrie_io.c.o
+
+test/test_gtrie_io.i: test/test_gtrie_io.c.i
+.PHONY : test/test_gtrie_io.i
+
+# target to preprocess a source file
+test/test_gtrie_io.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_gtrie_io.dir/build.make CMakeFiles/test_gtrie_io.dir/test/test_gtrie_io.c.i
+.PHONY : test/test_gtrie_io.c.i
+
+test/test_gtrie_io.s: test/test_gtrie_io.c.s
+.PHONY : test/test_gtrie_io.s
+
+# target to generate assembly for a file
+test/test_gtrie_io.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_gtrie_io.dir/build.make CMakeFiles/test_gtrie_io.dir/test/test_gtrie_io.c.s
+.PHONY : test/test_gtrie_io.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -297,6 +358,7 @@ help:
 	@echo "... test"
 	@echo "... common"
 	@echo "... test_gtrie"
+	@echo "... test_gtrie_io"
 	@echo "... unity"
 	@echo "... src/common/gtrie.o"
 	@echo "... src/common/gtrie.i"
@@ -304,9 +366,15 @@ help:
 	@echo "... src/common/gtrie_io.o"
 	@echo "... src/common/gtrie_io.i"
 	@echo "... src/common/gtrie_io.s"
+	@echo "... src/common/logging.o"
+	@echo "... src/common/logging.i"
+	@echo "... src/common/logging.s"
 	@echo "... test/test_gtrie.o"
 	@echo "... test/test_gtrie.i"
 	@echo "... test/test_gtrie.s"
+	@echo "... test/test_gtrie_io.o"
+	@echo "... test/test_gtrie_io.i"
+	@echo "... test/test_gtrie_io.s"
 .PHONY : help
 
 

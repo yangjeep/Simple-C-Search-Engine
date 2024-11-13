@@ -19,6 +19,7 @@ FetchContent_MakeAvailable(unity)
 set(COMMON_SOURCES
     src/common/gtrie.c
     src/common/gtrie_io.c
+    src/common/logging.c
 )
 
 # Create common library
