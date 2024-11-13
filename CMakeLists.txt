@@ -21,6 +21,7 @@ set(COMMON_SOURCES
     src/common/gtrie.c
     src/common/gtrie_io.c
     src/common/logging.c
+    src/common/indexer.c
 )
 
 # Create common library

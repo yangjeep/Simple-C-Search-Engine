@@ -10,8 +10,8 @@
 #include <errno.h>
 
 // Test directory and files
-#define GTRIEIO_TEST_DIR "./Testing/Temporary/gtrieio_test"
-#define GTRIEIO_TEST_FILE "./Testing/Temporary/gtrieio_test/test.trie"
+#define GTRIEIO_TEST_DIR "./Testing/Temporary/test_gtrie_io"
+#define GTRIEIO_TEST_FILE "./Testing/Temporary/test_gtrie_io/test.trie"
 
 static GTrie* create_test_trie(void) {
     int err = 0;

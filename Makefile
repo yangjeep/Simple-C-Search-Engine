@@ -211,6 +211,19 @@ test_gtrie_io/fast:
 .PHONY : test_gtrie_io/fast
 
 #=============================================================================
+# Target rules for targets named test_indexer
+
+# Build rule for target.
+test_indexer: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_indexer
+.PHONY : test_indexer
+
+# fast build rule for target.
+test_indexer/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_indexer.dir/build.make CMakeFiles/test_indexer.dir/build
+.PHONY : test_indexer/fast
+
+#=============================================================================
 # Target rules for targets named unity
 
 # Build rule for target.
@@ -270,6 +283,30 @@ src/common/gtrie_io.s: src/common/gtrie_io.c.s
 src/common/gtrie_io.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/gtrie_io.c.s
 .PHONY : src/common/gtrie_io.c.s
+
+src/common/indexer.o: src/common/indexer.c.o
+.PHONY : src/common/indexer.o
+
+# target to build an object file
+src/common/indexer.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/indexer.c.o
+.PHONY : src/common/indexer.c.o
+
+src/common/indexer.i: src/common/indexer.c.i
+.PHONY : src/common/indexer.i
+
+# target to preprocess a source file
+src/common/indexer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/indexer.c.i
+.PHONY : src/common/indexer.c.i
+
+src/common/indexer.s: src/common/indexer.c.s
+.PHONY : src/common/indexer.s
+
+# target to generate assembly for a file
+src/common/indexer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/indexer.c.s
+.PHONY : src/common/indexer.c.s
 
 src/common/logging.o: src/common/logging.c.o
 .PHONY : src/common/logging.o
@@ -343,6 +380,30 @@ test/test_gtrie_io.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_gtrie_io.dir/build.make CMakeFiles/test_gtrie_io.dir/test/test_gtrie_io.c.s
 .PHONY : test/test_gtrie_io.c.s
 
+test/test_indexer.o: test/test_indexer.c.o
+.PHONY : test/test_indexer.o
+
+# target to build an object file
+test/test_indexer.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_indexer.dir/build.make CMakeFiles/test_indexer.dir/test/test_indexer.c.o
+.PHONY : test/test_indexer.c.o
+
+test/test_indexer.i: test/test_indexer.c.i
+.PHONY : test/test_indexer.i
+
+# target to preprocess a source file
+test/test_indexer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_indexer.dir/build.make CMakeFiles/test_indexer.dir/test/test_indexer.c.i
+.PHONY : test/test_indexer.c.i
+
+test/test_indexer.s: test/test_indexer.c.s
+.PHONY : test/test_indexer.s
+
+# target to generate assembly for a file
+test/test_indexer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_indexer.dir/build.make CMakeFiles/test_indexer.dir/test/test_indexer.c.s
+.PHONY : test/test_indexer.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -359,6 +420,7 @@ help:
 	@echo "... common"
 	@echo "... test_gtrie"
 	@echo "... test_gtrie_io"
+	@echo "... test_indexer"
 	@echo "... unity"
 	@echo "... src/common/gtrie.o"
 	@echo "... src/common/gtrie.i"
@@ -366,6 +428,9 @@ help:
 	@echo "... src/common/gtrie_io.o"
 	@echo "... src/common/gtrie_io.i"
 	@echo "... src/common/gtrie_io.s"
+	@echo "... src/common/indexer.o"
+	@echo "... src/common/indexer.i"
+	@echo "... src/common/indexer.s"
 	@echo "... src/common/logging.o"
 	@echo "... src/common/logging.i"
 	@echo "... src/common/logging.s"
@@ -375,6 +440,9 @@ help:
 	@echo "... test/test_gtrie_io.o"
 	@echo "... test/test_gtrie_io.i"
 	@echo "... test/test_gtrie_io.s"
+	@echo "... test/test_indexer.o"
+	@echo "... test/test_indexer.i"
+	@echo "... test/test_indexer.s"
 .PHONY : help
 
 
