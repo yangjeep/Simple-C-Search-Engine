@@ -211,6 +211,19 @@ test_gtrie_io/fast:
 .PHONY : test_gtrie_io/fast
 
 #=============================================================================
+# Target rules for targets named test_index_writer
+
+# Build rule for target.
+test_index_writer: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_index_writer
+.PHONY : test_index_writer
+
+# fast build rule for target.
+test_index_writer/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_index_writer.dir/build.make CMakeFiles/test_index_writer.dir/build
+.PHONY : test_index_writer/fast
+
+#=============================================================================
 # Target rules for targets named test_indexer
 
 # Build rule for target.
@@ -222,6 +235,19 @@ test_indexer: cmake_check_build_system
 test_indexer/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_indexer.dir/build.make CMakeFiles/test_indexer.dir/build
 .PHONY : test_indexer/fast
+
+#=============================================================================
+# Target rules for targets named index_writer
+
+# Build rule for target.
+index_writer: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index_writer
+.PHONY : index_writer
+
+# fast build rule for target.
+index_writer/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/index_writer.dir/build.make CMakeFiles/index_writer.dir/build
+.PHONY : index_writer/fast
 
 #=============================================================================
 # Target rules for targets named unity
@@ -284,6 +310,30 @@ src/common/gtrie_io.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/gtrie_io.c.s
 .PHONY : src/common/gtrie_io.c.s
 
+src/common/index_writer.o: src/common/index_writer.c.o
+.PHONY : src/common/index_writer.o
+
+# target to build an object file
+src/common/index_writer.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/index_writer.c.o
+.PHONY : src/common/index_writer.c.o
+
+src/common/index_writer.i: src/common/index_writer.c.i
+.PHONY : src/common/index_writer.i
+
+# target to preprocess a source file
+src/common/index_writer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/index_writer.c.i
+.PHONY : src/common/index_writer.c.i
+
+src/common/index_writer.s: src/common/index_writer.c.s
+.PHONY : src/common/index_writer.s
+
+# target to generate assembly for a file
+src/common/index_writer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/index_writer.c.s
+.PHONY : src/common/index_writer.c.s
+
 src/common/indexer.o: src/common/indexer.c.o
 .PHONY : src/common/indexer.o
 
@@ -331,6 +381,30 @@ src/common/logging.s: src/common/logging.c.s
 src/common/logging.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/common.dir/build.make CMakeFiles/common.dir/src/common/logging.c.s
 .PHONY : src/common/logging.c.s
+
+src/index_writer/index_writer_main.o: src/index_writer/index_writer_main.c.o
+.PHONY : src/index_writer/index_writer_main.o
+
+# target to build an object file
+src/index_writer/index_writer_main.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/index_writer.dir/build.make CMakeFiles/index_writer.dir/src/index_writer/index_writer_main.c.o
+.PHONY : src/index_writer/index_writer_main.c.o
+
+src/index_writer/index_writer_main.i: src/index_writer/index_writer_main.c.i
+.PHONY : src/index_writer/index_writer_main.i
+
+# target to preprocess a source file
+src/index_writer/index_writer_main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/index_writer.dir/build.make CMakeFiles/index_writer.dir/src/index_writer/index_writer_main.c.i
+.PHONY : src/index_writer/index_writer_main.c.i
+
+src/index_writer/index_writer_main.s: src/index_writer/index_writer_main.c.s
+.PHONY : src/index_writer/index_writer_main.s
+
+# target to generate assembly for a file
+src/index_writer/index_writer_main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/index_writer.dir/build.make CMakeFiles/index_writer.dir/src/index_writer/index_writer_main.c.s
+.PHONY : src/index_writer/index_writer_main.c.s
 
 test/test_gtrie.o: test/test_gtrie.c.o
 .PHONY : test/test_gtrie.o
@@ -380,6 +454,30 @@ test/test_gtrie_io.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_gtrie_io.dir/build.make CMakeFiles/test_gtrie_io.dir/test/test_gtrie_io.c.s
 .PHONY : test/test_gtrie_io.c.s
 
+test/test_index_writer.o: test/test_index_writer.c.o
+.PHONY : test/test_index_writer.o
+
+# target to build an object file
+test/test_index_writer.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_index_writer.dir/build.make CMakeFiles/test_index_writer.dir/test/test_index_writer.c.o
+.PHONY : test/test_index_writer.c.o
+
+test/test_index_writer.i: test/test_index_writer.c.i
+.PHONY : test/test_index_writer.i
+
+# target to preprocess a source file
+test/test_index_writer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_index_writer.dir/build.make CMakeFiles/test_index_writer.dir/test/test_index_writer.c.i
+.PHONY : test/test_index_writer.c.i
+
+test/test_index_writer.s: test/test_index_writer.c.s
+.PHONY : test/test_index_writer.s
+
+# target to generate assembly for a file
+test/test_index_writer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_index_writer.dir/build.make CMakeFiles/test_index_writer.dir/test/test_index_writer.c.s
+.PHONY : test/test_index_writer.c.s
+
 test/test_indexer.o: test/test_indexer.c.o
 .PHONY : test/test_indexer.o
 
@@ -418,8 +516,10 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... common"
+	@echo "... index_writer"
 	@echo "... test_gtrie"
 	@echo "... test_gtrie_io"
+	@echo "... test_index_writer"
 	@echo "... test_indexer"
 	@echo "... unity"
 	@echo "... src/common/gtrie.o"
@@ -428,18 +528,27 @@ help:
 	@echo "... src/common/gtrie_io.o"
 	@echo "... src/common/gtrie_io.i"
 	@echo "... src/common/gtrie_io.s"
+	@echo "... src/common/index_writer.o"
+	@echo "... src/common/index_writer.i"
+	@echo "... src/common/index_writer.s"
 	@echo "... src/common/indexer.o"
 	@echo "... src/common/indexer.i"
 	@echo "... src/common/indexer.s"
 	@echo "... src/common/logging.o"
 	@echo "... src/common/logging.i"
 	@echo "... src/common/logging.s"
+	@echo "... src/index_writer/index_writer_main.o"
+	@echo "... src/index_writer/index_writer_main.i"
+	@echo "... src/index_writer/index_writer_main.s"
 	@echo "... test/test_gtrie.o"
 	@echo "... test/test_gtrie.i"
 	@echo "... test/test_gtrie.s"
 	@echo "... test/test_gtrie_io.o"
 	@echo "... test/test_gtrie_io.i"
 	@echo "... test/test_gtrie_io.s"
+	@echo "... test/test_index_writer.o"
+	@echo "... test/test_index_writer.i"
+	@echo "... test/test_index_writer.s"
 	@echo "... test/test_indexer.o"
 	@echo "... test/test_indexer.i"
 	@echo "... test/test_indexer.s"

@@ -22,6 +22,7 @@ set(COMMON_SOURCES
     src/common/gtrie_io.c
     src/common/logging.c
     src/common/indexer.c
+    src/common/index_writer.c
 )
 
 # Create common library
@@ -57,4 +58,9 @@ foreach(TEST_SOURCE ${TEST_SOURCES})
     )
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
 endforeach()
+
+# Add tools directory
+add_executable(index_writer src/index_writer/index_writer_main.c)
+target_link_libraries(index_writer PRIVATE common)
+
 
