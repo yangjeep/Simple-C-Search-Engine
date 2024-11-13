@@ -135,6 +135,19 @@ void test_large_scale(void) {
     TEST_ASSERT_EQUAL_INT(0, rc);
 }
 
+// Count nodes recursively
+static int count_nodes(TrieNode* node) {
+    if (!node) return 0;
+    int count = 1; // Count current node
+    for (int i = 0; i < ALPHABET_SIZE; i++) {
+            if (node->children[i]) {
+                count += count_nodes(node->children[i]);
+                printf("node: %c, count: %d\n", i + 'a', count);
+            }
+        }
+    return count;
+}
+
 void test_node_count(void) {
     int err = 0;
     GTrie* trie = gtrie_create(&err);
@@ -157,18 +170,7 @@ void test_node_count(void) {
     //              -> u -> g -> h -> t (4 more nodes) 
     // Root -> d -> o -> g -> s (4 nodes)
     // Total: 13 nodes
-    // Count nodes recursively
-    int count_nodes(TrieNode* node) {
-        if (!node) return 0;
-        int count = 1; // Count current node
-        for (int i = 0; i < ALPHABET_SIZE; i++) {
-            if (node->children[i]) {
-                count += count_nodes(node->children[i]);
-                printf("node: %c, count: %d\n", i + 'a', count);
-            }
-        }
-        return count;
-    }
+
     TEST_ASSERT_EQUAL_INT(15, count_nodes(trie->root));
 
     int rc = gtrie_destroy(trie);

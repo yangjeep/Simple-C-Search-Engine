@@ -1,3 +1,4 @@
+#define _GNU_SOURCE
 #include "gtrie_io.h"
 #include "logging.h"
 #include <stdio.h>
