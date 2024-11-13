@@ -26,7 +26,7 @@ The GTrie is complemented by LMDB for persistent storage, allowing the search in
 - C compiler (gcc/clang)
 - Git
 
-## Building the Project
+## Building and Testingthe Project
 
 1. Clone the repository:
 
@@ -49,3 +49,10 @@ cd build
 cmake ..
 make
 ```
+4. Run the index writer tool - index_writer takes expanded key value pairs and writes them to a binary index file in gtrie format
+
+```bash
+cd build/bin    
+./index_writer -i <path_to_key_value_pair_file> -o <path_to_output_index_file>
+```
+
