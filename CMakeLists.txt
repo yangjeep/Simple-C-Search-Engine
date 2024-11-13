@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.14)
 project(SearchEngine C)
+# Set binary output directory for all targets
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 
-# Find LMDB package
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(LMDB REQUIRED lmdb)
 
 # Download and configure Unity
 include(FetchContent)
@@ -45,6 +46,7 @@ target_link_libraries(common PUBLIC ${LMDB_LIBRARIES})
 # Tests
 enable_testing()
 file(GLOB TEST_SOURCES "test/test_*.c")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 foreach(TEST_SOURCE ${TEST_SOURCES})
     get_filename_component(TEST_NAME ${TEST_SOURCE} NAME_WE)
     add_executable(${TEST_NAME} ${TEST_SOURCE})
