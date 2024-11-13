@@ -87,9 +87,6 @@ int indexer_load(Indexer* idx, const char* filepath) {
     idx->trie = new_trie;
     idx->timestamp = time(NULL);
     
-    // Update key count from loaded trie
-    idx->trie->total_words = idx->trie->total_words;
-
     INFO_LOG("Successfully loaded index with %zu keys", idx->trie->total_words);
     return 0;
 }

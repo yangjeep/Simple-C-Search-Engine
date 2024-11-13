@@ -85,8 +85,8 @@ int gtrie_save(const GTrie* trie, const char* filepath, progress_cb progress, vo
         return EINVAL;
     }
 
-    INFO_LOG("Saving trie to %s (nodes: %zu, docs: %zu)", 
-             filepath, trie->node_count, trie->doc_count);
+    INFO_LOG("Saving trie to %s (nodes: %zu, docs: %zu, words: %zu)", 
+             filepath, trie->node_count, trie->doc_count, trie->total_words);
 
     FILE* fp = fopen(filepath, "wb");
     if (!fp) {
@@ -99,7 +99,8 @@ int gtrie_save(const GTrie* trie, const char* filepath, progress_cb progress, vo
         .version = CURRENT_VERSION,
         .timestamp = time(NULL),
         .node_count = trie->node_count,
-        .doc_count = trie->doc_count
+        .doc_count = trie->doc_count,
+        .total_words = trie->total_words
     };
 
     DEBUG_LOG("Writing header: magic=0x%x, version=%u, timestamp=%lu", 
@@ -261,11 +262,16 @@ GTrie* gtrie_load(const char* filepath, int* err, progress_cb progress, void* us
 
     GTrie* trie = malloc(sizeof(GTrie));
     if (!trie) {
+        ERROR_LOG("Failed to allocate GTrie structure");
         if (err) *err = ENOMEM;
         fclose(fp);
         return NULL;
     }
     memset(trie, 0, sizeof(GTrie));
+
+    trie->node_count = header.node_count;
+    trie->doc_count = header.doc_count;
+    trie->total_words = header.total_words;
 
     size_t processed = 0;
     trie->root = read_node_with_progress(fp, err, &processed, header.node_count, 
@@ -276,9 +282,6 @@ GTrie* gtrie_load(const char* filepath, int* err, progress_cb progress, void* us
         fclose(fp);
         return NULL;
     }
-
-    trie->node_count = header.node_count;
-    trie->doc_count = header.doc_count;
 
     fclose(fp);
     return trie;

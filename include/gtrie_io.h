@@ -26,6 +26,7 @@ typedef struct {
     uint64_t timestamp;      // Creation timestamp
     uint64_t node_count;     // Total nodes
     uint64_t doc_count;      // Total unique documents
+    uint64_t total_words;    // Total words
 } IndexHeader;
 
 // Core operations
