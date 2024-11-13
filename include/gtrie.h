@@ -29,6 +29,8 @@ typedef struct TrieNode {
 typedef struct {
     TrieNode* root;
     size_t total_words;
+    size_t node_count;    // Total number of nodes in the trie
+    size_t doc_count;     // Total number of unique documents indexed
 } GTrie;
 
 // GTrie operations

@@ -99,6 +99,8 @@ GTrie* gtrie_create(int* err) {
     }
     
     trie->total_words = 0;
+    trie->node_count = 1; // Root node
+    trie->doc_count = 0;
     
     *err = 0;
     return trie;
@@ -138,6 +140,7 @@ int gtrie_insert(GTrie* trie, const char* word, const char* doc_id) {
         if (!current->children[index]) {
             current->children[index] = create_node(&err);
             if (!current->children[index]) return err;
+            trie->node_count++; // Increment node count when creating new node
         }
         
         current = current->children[index];
@@ -167,6 +170,7 @@ int gtrie_insert(GTrie* trie, const char* word, const char* doc_id) {
     new_entry->next = current->postings->head;
     current->postings->head = new_entry;
     
+    trie->doc_count++; // Increment doc count when adding new document
     
     return 0;
 }
