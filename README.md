@@ -10,7 +10,7 @@ The search engine's backend is powered by a generalized trie (GTrie) data struct
 - Memory-efficient storage of terms through shared prefixes
 - Full UTF-8 support for international character sets
 - Integrated posting lists for document references
-- Persistent storage using LMDB (Lightning Memory-Mapped Database)
+- In-memory storage with serialization support
 
 Each node in the GTrie can store a UTF-8 codepoint and maintains:
 - Links to child nodes (supporting full Unicode range)
